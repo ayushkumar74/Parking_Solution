@@ -108,8 +108,7 @@ const Navbar = () => {
                     className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer"
                   >
                     <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
-                      {/* FIXED: Added ?. to prevent crash */}
-                      {user?.name?.charAt(0).toUpperCase() || 'U'}
+                      {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
                     </div>
                     <span className="text-gray-900 dark:text-white font-medium hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                       {user?.name || 'User'}
@@ -165,15 +164,54 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
           <div className="px-4 py-4 space-y-2">
-            <Link to="/" onClick={closeMobileMenu} className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium transition">Home</Link>
-            <Link to="/about" onClick={closeMobileMenu} className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium transition">About</Link>
-            <Link to="/contact" onClick={closeMobileMenu} className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium transition">Contact</Link>
-            <Link to="/parking" onClick={closeMobileMenu} className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium transition">Parking Spots</Link>
-            
+            <Link
+              to="/"
+              onClick={closeMobileMenu}
+              className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium transition"
+            >
+              Home
+            </Link>
+            <Link
+              to="/about"
+              onClick={closeMobileMenu}
+              className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium transition"
+            >
+              About
+            </Link>
+            <Link
+              to="/contact"
+              onClick={closeMobileMenu}
+              className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium transition"
+            >
+              Contact
+            </Link>
+            <Link
+              to="/parking"
+              onClick={closeMobileMenu}
+              className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium transition"
+            >
+              Parking Spots
+            </Link>
             {user && (
-              <Link to={isAdmin ? "/manage" : "/profile"} onClick={closeMobileMenu} className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium transition">
-                {isAdmin ? "Manage" : "Profile"}
-              </Link>
+              <>
+                {isAdmin ? (
+                  <Link
+                    to="/manage"
+                    onClick={closeMobileMenu}
+                    className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium transition"
+                  >
+                    Manage
+                  </Link>
+                ) : (
+                  <Link
+                    to="/profile"
+                    onClick={closeMobileMenu}
+                    className="block text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-base font-medium transition"
+                  >
+                    Profile
+                  </Link>
+                )}
+              </>
             )}
 
             {/* Mobile Auth Section */}
@@ -182,17 +220,33 @@ const Navbar = () => {
                 <>
                   <div className="flex items-center gap-3 px-3 py-2">
                     <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
-                      {/* FIXED: Added ?. to prevent crash */}
-                      {user?.name?.charAt(0).toUpperCase() || 'U'}
+                      {user?.name ? user.name.charAt(0).toUpperCase() : 'U'}
                     </div>
                     <span className="text-gray-900 dark:text-white font-medium">{user?.name || 'User'}</span>
                   </div>
-                  <button onClick={handleLogout} className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-base font-medium transition">Logout</button>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-base font-medium transition"
+                  >
+                    Logout
+                  </button>
                 </>
               ) : (
                 <>
-                  <Link to="/login" onClick={closeMobileMenu} className="block text-center text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2 rounded-md text-base font-medium transition">Login</Link>
-                  <Link to="/signup" onClick={closeMobileMenu} className="block text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-base font-medium transition">Sign Up</Link>
+                  <Link
+                    to="/login"
+                    onClick={closeMobileMenu}
+                    className="block text-center text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 px-4 py-2 rounded-md text-base font-medium transition"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    onClick={closeMobileMenu}
+                    className="block text-center bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-base font-medium transition"
+                  >
+                    Sign Up
+                  </Link>
                 </>
               )}
             </div>
