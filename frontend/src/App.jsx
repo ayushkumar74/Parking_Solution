@@ -26,7 +26,10 @@ function App() {
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/parking" element={<ParkingSpots />} />
                 <Route path="/profile" element={<Profile />} />
+                {/* Dono routes Manage page par le jayenge */}
                 <Route path="/manage" element={<Manage />} />
+                <Route path="/admin" element={<Manage />} />
+                
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
               </Routes>
