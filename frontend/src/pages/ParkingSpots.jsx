@@ -91,7 +91,7 @@ const ParkingSpots = () => {
     try {
       setError(null);
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/parking');
+      const response = await axios.get('https://parking-solution.onrender.com/api/parking');
       setSpots(response.data || []);
     } catch (error) {
       console.error('Error fetching parking spots:', error);
@@ -135,7 +135,7 @@ const ParkingSpots = () => {
         pricePerMonth: 0
       };
 
-      await axios.post('http://localhost:5000/api/parking', spotData, {
+      await axios.post('https://parking-solution.onrender.com/api/parking', spotData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -181,7 +181,7 @@ const ParkingSpots = () => {
       };
 
       const response = await axios.post(
-        `http://localhost:5000/api/parking/${bookingSpot._id}/book`,
+        `https://parking-solution.onrender.com/api/parking/${bookingSpot._id}/book`,
         payload,
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -207,7 +207,7 @@ const ParkingSpots = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/parking/${spotId}/release`,
+        `https://parking-solution.onrender.com/api/parking/${spotId}/release`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -223,7 +223,7 @@ const ParkingSpots = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`http://localhost:5000/api/parking/${spotId}`, {
+      await axios.delete(`https://parking-solution.onrender.com/api/parking/${spotId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       fetchSpots();
@@ -261,7 +261,7 @@ const ParkingSpots = () => {
       };
 
       await axios.put(
-        `http://localhost:5000/api/parking/${editingSpot}`,
+        `https://parking-solution.onrender.com/api/parking/${editingSpot}`,
         updateData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

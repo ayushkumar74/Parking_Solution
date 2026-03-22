@@ -19,7 +19,7 @@ const Profile = () => {
   const fetchBookings = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/parking', {
+      const response = await axios.get('https://parking-solution.onrender.com/api/parking', {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Filter bookings for current user
@@ -37,7 +37,7 @@ const Profile = () => {
   const fetchBookingHistory = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/parking/history/user', {
+      const response = await axios.get('https://parking-solution.onrender.com/api/parking/history/user', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setBookingHistory(response.data);
@@ -75,7 +75,7 @@ const Profile = () => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        `http://localhost:5000/api/parking/${spotId}/release`,
+        `https://parking-solution.onrender.com/api/parking/${spotId}/release`,
         {
           status: action,
           bookingId: bookingId

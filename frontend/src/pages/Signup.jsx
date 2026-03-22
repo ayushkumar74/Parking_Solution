@@ -66,7 +66,7 @@ const Signup = () => {
     setLoading(true);
     try {
       const { confirmPassword, ...signupData } = formData;
-      const response = await axios.post('http://localhost:5000/api/auth/signup', signupData);
+      const response = await axios.post('https://parking-solution.onrender.com/api/auth/signup', signupData);
       login(response.data.user, response.data.token);
       navigate('/');
     } catch (error) {
