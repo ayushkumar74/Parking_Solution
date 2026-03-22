@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     'http://localhost:5173', 
-    'https://parking-solution-qkff-7gncslaae-ayushkumar74s-projects.vercel.app' // <-- Yahan apna Vercel wala link dalo
+    'https://parking-solution-qkff.vercel.app/' // <-- Yahan apna Vercel wala link dalo
   ],
   credentials: true
 }));
