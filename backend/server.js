@@ -29,11 +29,11 @@ app.use(cookieParser());
 
 // --- CHANGE 2: MongoDB Connection ---
 // Humne yahan error handling thodi improve kar di hai
-const dbURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/parkeasy';
+const dbURI = process.env.MONGODB_URI;
 
 mongoose.connect(dbURI)
-.then(() => console.log('✅ MongoDB Cloud se connect ho gaya!'))
-.catch(err => console.error('❌ MongoDB Connection Error:', err));
+  .then(() => console.log('✅ MongoDB Cloud se connect ho gaya!'))
+  .catch(err => console.error('❌ Connection Error:', err.message));
 
 // Routes
 app.use('/api/auth', authRoutes);
